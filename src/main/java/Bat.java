@@ -8,7 +8,8 @@ import javax.imageio.ImageIO;
 public class Bat {
 	
 	private BufferedImage img = null;
-	private static int bat_diameter = 44;  // œrednica nietoperza
+	
+	private static int bat_diameter = 44; // œrednica nietoperza
 	public static int x = (GamePanel.WIDTH/2);   //-bat_diameter/2; // po³o¿enie na osi x
 	public static int y = GamePanel.HIGHT/2; // po³o¿enie na osi y
 	
@@ -51,7 +52,7 @@ public class Bat {
 		
 		public static Rectangle getBatRectangle() {
 			
-			Rectangle batRectangle = new Rectangle(x,y, bat_diameter, 31);
+			Rectangle batRectangle = new Rectangle(x,y, bat_diameter, 40);
 			return batRectangle;
 		}
 	}
