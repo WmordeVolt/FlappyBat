@@ -1,10 +1,31 @@
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.List;
+import java.util.Scanner;
 
 import javax.imageio.ImageIO;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.swing.ImageIcon;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class GamePanel extends JPanel{
@@ -12,6 +33,9 @@ public class GamePanel extends JPanel{
 	public static final int WIDTH = 400;
 	public static final int HIGHT = 600;
 	public static boolean GameOver = false;
+	public static int score = 0;
+	
+
 	
 	private int baseCoords = 0;
 	private BufferedImage img;
@@ -30,10 +54,12 @@ public class GamePanel extends JPanel{
 			public void mousePressed(MouseEvent e) {
 			super.mousePressed(e);
 			bi.Upmove();
+			
 		}
 		});
 		
 	}
+
 
 	private void LoadImage() { // za³adowanie t³a menu
 		try {
@@ -50,7 +76,13 @@ public class GamePanel extends JPanel{
 		bi.drawBat(g);
 		pd.drawPipes(g);
 		pd2.drawPipes(g);
+		
+		g.setFont(new Font("Courier New", Font.CENTER_BASELINE, 25));
+		g.setColor(Color.yellow);
+		g.drawString("" + score,GamePanel.WIDTH/2 , 50);	
+	
 	}
+	
 	public void Move() {
 		bi.batMove();
 		pd.pipesMove();
@@ -59,7 +91,58 @@ public class GamePanel extends JPanel{
 		if(GameOver) {
 			pd.X =GamePanel.WIDTH;
 			pd2.X = GamePanel.WIDTH + (GamePanel.WIDTH/2);
-			GameOver = false;
+			GameOver = false; }
+	
 		}
-	}
+	
+public static boolean gameOverMessage()  {
+	
+ 	try{
+			BufferedWriter bw = new BufferedWriter(new FileWriter("src/main/resources/ranking.txt",true));
+			
+			bw.write(GamePanel.score +", " + MenuPanel.nazwa + "\n");
+			bw.flush();
+			bw.close();
+			
+			}catch(Exception ek){};
+
+		
+		Object[] options = {"Restart", "Ranking", "Exit" };
+		
+//okienko GameOver	
+int result = JOptionPane.showOptionDialog(null,"Game Over! Your score is " + score+"\n", "Game Over!",
+JOptionPane.YES_NO_OPTION,
+JOptionPane.WARNING_MESSAGE,
+null,     //do not use a custom Icon
+options,  //the titles of buttons
+options[0]); //default button title
+
+
+
+if (result == JOptionPane.YES_OPTION) {  //restart
+return true;
 }
+
+ else {  //wyœwietlanie rankingu
+	 
+	Ranking.ranking();
+	
+	 return false;
+	 }
+	} 
+	
+
+	
+	public void actionPerformed(ActionEvent e) {
+	    JFrame window3 = new JFrame();
+	    window3.setVisible(true);
+		window3.setResizable(false);
+		window3.pack();
+		setVisible(false);
+			
+	      }
+}
+
+
+
+

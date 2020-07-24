@@ -1,7 +1,9 @@
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
@@ -55,6 +57,11 @@ public class Pipes {
 			Rectangle upRectangle = new Rectangle (X,0, width_pipe, GamePanel.HIGHT-(height+distance));
 			
 			if(downRectangle.intersects(Bat.getBatRectangle())||upRectangle.intersects(Bat.getBatRectangle())) {
+				
+								
+			boolean option = GamePanel.gameOverMessage(); {
+				
+			if (option) {
 			
 			try {
 				Thread.sleep(500);
@@ -62,10 +69,14 @@ public class Pipes {
 				ex.printStackTrace();
 			}
 			
+			
 			Bat.reset();
 			pipes_reset();
 		}
-		}
+			}
+			}
+			}
+		
 		private void pipes_reset() {
 			y = rand.nextInt(GamePanel.HIGHT - 350)+210;
 			height = GamePanel.HIGHT - y;
