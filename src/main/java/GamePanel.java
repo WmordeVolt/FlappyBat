@@ -107,7 +107,7 @@ public static boolean gameOverMessage()  {
 			}catch(Exception ek){};
 
 		
-		Object[] options = {"Restart", "Ranking", "Exit" };
+		Object[] options = {"Restart", "Ranking"};
 		
 //okienko GameOver	
 int result = JOptionPane.showOptionDialog(null,"Game Over! Your score is " + score+"\n", "Game Over!",
@@ -123,10 +123,13 @@ if (result == JOptionPane.YES_OPTION) {  //restart
 return true;
 }
 
- else {  //wyœwietlanie rankingu
+if (result == JOptionPane.NO_OPTION) {   //wyœwietlanie rankingu
 	 
 	Ranking.ranking();
 	
+	return true;
+}
+else {
 	 return false;
 	 }
 	} 
