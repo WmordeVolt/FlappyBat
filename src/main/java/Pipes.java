@@ -7,6 +7,7 @@ import java.io.FileWriter;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
+import javax.swing.JFrame;
 
 public class Pipes {
 	
@@ -73,6 +74,12 @@ public class Pipes {
 			Bat.reset();
 			pipes_reset();
 		}
+			
+			else {
+				JFrame frame = FlappyBat.getWindow();
+				frame.dispose();
+				FlappyBat.timer.stop();
+			}
 			}
 			}
 			}

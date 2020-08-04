@@ -20,14 +20,14 @@ public class FlappyBat extends JFrame implements WindowListener,
 WindowFocusListener,
 WindowStateListener  {
 
-private JFrame window;
-private Timer timer;
+private static JFrame window;
+public static Timer timer;
 static boolean musicplay = true;
 
 
 private FlappyBat(){
 	
-	
+
 	// Jframe okno
     window = new JFrame();
     window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -39,11 +39,10 @@ private FlappyBat(){
     window.setIconImage(img.getImage());
 
     
-    addWindowListener(this);
-    addWindowFocusListener(this);
-    addWindowStateListener(this);
+    window.addWindowListener(this);
+    window.addWindowFocusListener(this);
+    window.addWindowStateListener(this);
 }
-
 
 	private void rendering() throws IOException {
 		MenuPanel mp =  new MenuPanel();
@@ -64,8 +63,7 @@ private FlappyBat(){
 		window.add(mp);
 		window.setVisible(true);
 	
-		
-		
+				
 		// w¹tek opóznienia startu  5 miliksekund 
 		while(mp.StartingPoint == false) {
 			try {
@@ -81,20 +79,19 @@ private FlappyBat(){
 		
 		timer.start();
 	}
+	
+	public static JFrame getWindow() {
+		return window;
+	}
 
     public static void main(String[] args) throws IOException, LineUnavailableException, UnsupportedAudioFileException {
 
     FlappyBat fb = new FlappyBat();
     fb.rendering();
- 
- 
-    if( FlappyBat.musicplay == true) {
-    PlayMusic.play();
+
+    Music.play();
   }
-  else {
-	//  PlayMusic.pause();
-  }
-    }
+    
 
 	public void windowStateChanged(WindowEvent e) {
 	
@@ -107,7 +104,7 @@ private FlappyBat(){
 
 	public void windowLostFocus(WindowEvent e) {
 	
-	}
+}
 
 	public void windowOpened(WindowEvent e) {
 	
@@ -125,12 +122,8 @@ private FlappyBat(){
 	}
 	
 	public void windowIconified(WindowEvent e) { //nie dzia³a
-//		FlappyBat.musicplay = false;
-//		
-//		if (musicplay == false) {
-//		PlayMusic.pause();
 		
-	//	}
+		Music.clip.stop();
 	}
 
 	public void windowDeiconified(WindowEvent e) {

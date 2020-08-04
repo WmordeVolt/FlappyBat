@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 
 import javax.imageio.ImageIO;
+import javax.swing.JFrame;
 
 public class Bat {
 	
@@ -37,7 +38,27 @@ public class Bat {
 			speed +=shift; //3, 4
 			y+=speed; // 300+3, 300+3+4, 300+3+4+5
 		}else {
+			boolean option = GamePanel.gameOverMessage(); {
+				
+				if (option) {
+				
+				try {
+					Thread.sleep(500);
+				}catch(Exception ex) {
+					ex.printStackTrace();
+				}
+				
+				
 			reset();
+				
+			}
+				
+				else {
+					JFrame frame = FlappyBat.getWindow();
+					frame.dispose();
+					FlappyBat.timer.stop();
+				}
+				}
 		}
 	} // skok nietoperza ujemnie wzgêdem osi y
 	public void Upmove() {

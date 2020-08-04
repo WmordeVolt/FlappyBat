@@ -107,10 +107,10 @@ public static boolean gameOverMessage()  {
 			}catch(Exception ek){};
 
 		
-		Object[] options = {"Restart", "Ranking"};
+		Object[] options = {"Restart", "Ranking", "Exit"};
 		
 //okienko GameOver	
-int result = JOptionPane.showOptionDialog(null,"Game Over! Your score is " + score+"\n", "Game Over!",
+int result = JOptionPane.showOptionDialog(null,"Game Over! Good job! Your score is " + score+"\n", "Game Over!",
 JOptionPane.YES_NO_OPTION,
 JOptionPane.WARNING_MESSAGE,
 null,     //do not use a custom Icon
@@ -123,19 +123,21 @@ if (result == JOptionPane.YES_OPTION) {  //restart
 return true;
 }
 
-if (result == JOptionPane.NO_OPTION) {   //wyœwietlanie rankingu
-	 
-	Ranking.ranking();
+if (result == JOptionPane.NO_OPTION) { // na razie nie dzia³a
 	
-	return true;
-}
-else {
-	 return false;
-	 }
-	} 
-	
+Ranking.ranking();
 
+return true;
+
+}
+else {   //zamkniecie okna
+	 
+	FlappyBat.timer.stop();
 	
+	return false;
+
+	} 
+}
 	public void actionPerformed(ActionEvent e) {
 	    JFrame window3 = new JFrame();
 	    window3.setVisible(true);

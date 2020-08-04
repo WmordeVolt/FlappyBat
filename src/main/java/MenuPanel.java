@@ -62,10 +62,7 @@ public class MenuPanel extends JPanel implements ActionListener  {
 		start.setBackground(Color.BLACK);
 		add(start);
 		start.addActionListener(this);
-		
-		
-		//LoadImage();
-		
+			
 		start.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -79,14 +76,6 @@ public class MenuPanel extends JPanel implements ActionListener  {
 		
 	}
 
- 
-     	  
-	//private void LoadImage() {
-	//	try { img = ImageIO.read(new File("src\\main\\resources\\tlo_menu.png"));
-		
-	//	}catch (Exception ex) {
-	//		ex.printStackTrace();
-    //  }
 	
 	//t³o
 	@Override
@@ -98,19 +87,10 @@ public class MenuPanel extends JPanel implements ActionListener  {
 		}
 
 	
-
-
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 }
-//@Override
-//public void paint(Graphics g) {
-//	super.paint(g);
-//	g.drawImage(img, 0, 0, GamePanel.WIDTH,GamePanel.HIGHT, null);
-//	}
-	
-	
-//}
+
 
