@@ -121,7 +121,7 @@ private FlappyBat(){
 		
 	}
 	
-	public void windowIconified(WindowEvent e) { //nie dzia³a
+	public void windowIconified(WindowEvent e) {
 		
 		Music.clip.stop();
 	}
