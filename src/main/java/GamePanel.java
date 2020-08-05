@@ -77,9 +77,9 @@ public class GamePanel extends JPanel{
 		pd.drawPipes(g);
 		pd2.drawPipes(g);
 		
-		g.setFont(new Font("Courier New", Font.CENTER_BASELINE, 25));
+		g.setFont(new Font("Tahoma", Font.BOLD, 40));
 		g.setColor(Color.yellow);
-		g.drawString("" + score,GamePanel.WIDTH/2 , 50);	
+		g.drawString("" + score,GamePanel.WIDTH/2 , 100);	
 	
 	}
 	
@@ -91,8 +91,12 @@ public class GamePanel extends JPanel{
 		if(GameOver) {
 			pd.X =GamePanel.WIDTH;
 			pd2.X = GamePanel.WIDTH + (GamePanel.WIDTH/2);
-			GameOver = false; }
-	
+			GameOver = false; 
+			}
+		System.out.println(pd.X+"->"+Bat.x +"   :   "+ pd2.X+"->"+Bat.x);
+		if (pd.X == Bat.x || pd2.X == Bat.x) {
+			score += 1;
+		}
 		}
 	
 public static boolean gameOverMessage()  {
