@@ -21,8 +21,9 @@ WindowFocusListener,
 WindowStateListener  {
 
 private static JFrame window;
-public static Timer timer;
+public static Timer timer , timer2;
 static boolean musicplay = true;
+private int count = 3;
 
 
 private FlappyBat(){
@@ -77,7 +78,27 @@ private FlappyBat(){
 		gp.setVisible(true);
 		window.revalidate();
 		
-		timer.start();
+		//timer.start();
+		
+		timer2 = new Timer(1000, new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				count--;
+				GamePanel.count = count;
+				GamePanel.starting = true;
+				gp.repaint();
+				if(count == 0) {
+					timer2.stop();
+					timer.start();
+					GamePanel.starting = false;
+				}
+				
+				
+				
+			}
+		});
+		
+		timer2.start();
 	}
 	
 	public static JFrame getWindow() {

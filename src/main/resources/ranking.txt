@@ -76,3 +76,13 @@
 0, 
 0, 
 10, 
+8, daniel
+7, daniel
+0, daniel
+0, daniel
+0, 
+3, 
+0, 
+1, 
+0, 
+3, 

@@ -14,7 +14,7 @@ public class Music {
 	static Clip clip;
 	static long clipTimePosition;
 
-	static File musicPath = new File("src\\main\\resources\\music.wav");
+	static File musicPath = new File("src\\main\\resources\\batmanpiano.wav");
 
 	static void play() throws LineUnavailableException, UnsupportedAudioFileException, IOException {
 

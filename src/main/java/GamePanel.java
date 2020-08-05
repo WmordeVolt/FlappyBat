@@ -34,6 +34,8 @@ public class GamePanel extends JPanel{
 	public static final int HIGHT = 600;
 	public static boolean GameOver = false;
 	public static int score = 0;
+	public static boolean starting = false;
+	public static int count = -1;
 	
 
 	
@@ -80,6 +82,12 @@ public class GamePanel extends JPanel{
 		g.setFont(new Font("Tahoma", Font.BOLD, 40));
 		g.setColor(Color.yellow);
 		g.drawString("" + score,GamePanel.WIDTH/2 , 100);	
+		
+		if(starting) {
+			g.setFont(new Font("Tahoma", Font.BOLD, 100));
+			g.setColor(Color.yellow);
+			g.drawString(Integer.toString(count), 170, 250);
+		}
 	
 	}
 	
@@ -125,6 +133,8 @@ options[0]); //default button title
 
 if (result == JOptionPane.YES_OPTION) {  //restart
 return true;
+
+
 }
 
 if (result == JOptionPane.NO_OPTION) { // na razie nie dzia³a
