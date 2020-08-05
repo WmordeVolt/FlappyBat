@@ -11,7 +11,7 @@ public class Bat {
 	private BufferedImage img = null;
 	
 	private static int bat_diameter = 44; // œrednica nietoperza
-	public static int x = (GamePanel.WIDTH/2);   //-bat_diameter/2; // po³o¿enie na osi x
+	public static int x = (GamePanel.WIDTH/2)-bat_diameter/2; // po³o¿enie na osi x
 	public static int y = GamePanel.HIGHT/2; // po³o¿enie na osi y
 	
 	private static int speed = 2; //prêdkoœæ
@@ -69,6 +69,7 @@ public class Bat {
 			speed = 2;
 			y = GamePanel.HIGHT/2;
 			GamePanel.GameOver = true;
+			GamePanel.score = 0;
 		}
 		
 		public static Rectangle getBatRectangle() {

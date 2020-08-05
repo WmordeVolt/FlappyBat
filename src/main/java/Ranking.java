@@ -27,57 +27,64 @@ import javax.swing.JTextField;
 public class Ranking  {
 	
 	public static void ranking() {
-	List <String> lista = new ArrayList<String>();
-	{	
-	String line;
-	BufferedReader br;
-	try {
-		br = new BufferedReader(new FileReader("src/main/resources/ranking.txt"));
+
+
+		List<Integer> lista = new ArrayList<Integer>();
+		int liczba;
+		int bestscore;
+   
+     try {
+            BufferedReader br = new BufferedReader(new FileReader("src/main/resources/ranking.txt"));
+            String linia = null;
+             
+            while ((linia = br.readLine()) != null) {
+            	
+            if (	!linia.isEmpty() ) {
+            	
+                 liczba = Integer.parseInt(linia.trim());
+                lista.add(liczba);
+            }
+            }
+        } catch (Exception e) {
+            System.err.println("Wystapil blad przy wczytywaniu danych");
+            e.printStackTrace();
+        }   
+
+     
+    bestscore = Collections.max(lista);
+    
+    ImageIcon iconRanking = new ImageIcon ("src/main/resources/podium.jpg");
+
+	int textRanking = JOptionPane.showOptionDialog(null ,"The best score: " + "\n" + bestscore, "the best sccore", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, iconRanking, null, null);
+}
+   
+	
+	
+ 
+}
+
+ 
+
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
+//	ImageIcon iconRanking = new ImageIcon ("src/main/resources/podium.jpg");
+	//int textRanking = JOptionPane.showOptionDialog(null ,"Top 10: " + "\n" + s, "Top 10", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, iconRanking, null, null);
+	
+
+	
+	
+  
+	
 		
-		while((line = br.readLine()) != null) { 
-			
-		line.split(",");	
-		lista.add(line);
-		}
-	} catch (FileNotFoundException e) {
-		
-		e.printStackTrace();
-	} catch (IOException e) {
-	
-		e.printStackTrace();
-	}
-	
-	String s = "";
 
-	int i = 0;
-
-	for(String str: lista) {
-	
-	s += str + "\n";
-
-	i++;
-	if (i == 10) {
-
-	break;
-
-	}
-	
-	System.out.println(s);
-
-	}
-	
-	ImageIcon iconRanking = new ImageIcon ("src/main/resources/podium.jpg");
-	int textRanking = JOptionPane.showOptionDialog(null ,"Top 10: " + "\n" + s, "Top 10", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, iconRanking, null, null);
-	
-
-	}
-	}
-	
-
-	
-}  
-	
-			
 
 
 	

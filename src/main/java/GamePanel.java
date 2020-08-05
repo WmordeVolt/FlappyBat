@@ -34,6 +34,8 @@ public class GamePanel extends JPanel{
 	public static final int HIGHT = 600;
 	public static boolean GameOver = false;
 	public static int score = 0;
+	public static boolean starting = false;
+	public static int count = -1;
 	
 
 	
@@ -77,9 +79,15 @@ public class GamePanel extends JPanel{
 		pd.drawPipes(g);
 		pd2.drawPipes(g);
 		
-		g.setFont(new Font("Courier New", Font.CENTER_BASELINE, 25));
+		g.setFont(new Font("Tahoma", Font.BOLD, 40));
 		g.setColor(Color.yellow);
-		g.drawString("" + score,GamePanel.WIDTH/2 , 50);	
+		g.drawString("" + score,GamePanel.WIDTH/2 , 100);	
+		
+		if(starting) {
+			g.setFont(new Font("Tahoma", Font.BOLD, 100));
+			g.setColor(Color.yellow);
+			g.drawString(Integer.toString(count), 170, 250);
+		}
 	
 	}
 	
@@ -91,8 +99,12 @@ public class GamePanel extends JPanel{
 		if(GameOver) {
 			pd.X =GamePanel.WIDTH;
 			pd2.X = GamePanel.WIDTH + (GamePanel.WIDTH/2);
-			GameOver = false; }
-	
+			GameOver = false; 
+			}
+	//	System.out.println(pd.X+"->"+Bat.x +"   :   "+ pd2.X+"->"+Bat.x);
+		if (pd.X == Bat.x || pd2.X == Bat.x) {  //naliczanie punktow
+			score += 1;
+		}
 		}
 	
 public static boolean gameOverMessage()  {
@@ -100,36 +112,35 @@ public static boolean gameOverMessage()  {
  	try{
 			BufferedWriter bw = new BufferedWriter(new FileWriter("src/main/resources/ranking.txt",true));
 			
-			bw.write(GamePanel.score +", " + MenuPanel.nazwa + "\n");
+			bw.write(GamePanel.score + "\n");
 			bw.flush();
 			bw.close();
 			
 			}catch(Exception ek){};
 
 		
-		Object[] options = {"Restart", "Ranking", "Exit"};
+		Object[] options = {"Restart", "The best score","Exit"};
 		
 //okienko GameOver	
-int result = JOptionPane.showOptionDialog(null,"Game Over! Good job! Your score is " + score+"\n", "Game Over!",
+int result = JOptionPane.showOptionDialog(null,"Game Over! Good job " + MenuPanel.nazwa + "! Your score is " + score +"\n"  , "Game Over!",
 JOptionPane.YES_NO_OPTION,
 JOptionPane.WARNING_MESSAGE,
-null,     //do not use a custom Icon
-options,  //the titles of buttons
-options[0]); //default button title
-
+null,     
+options,  
+options[0]); 
 
 
 if (result == JOptionPane.YES_OPTION) {  //restart
 return true;
+
 }
 
-if (result == JOptionPane.NO_OPTION) { // na razie nie dzia³a
+if (result == JOptionPane.NO_OPTION) {
+	Ranking.ranking();
 	
-Ranking.ranking();
-
 return true;
-
 }
+
 else {   //zamkniecie okna
 	 
 	FlappyBat.timer.stop();
