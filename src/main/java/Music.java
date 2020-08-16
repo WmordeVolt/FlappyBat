@@ -27,12 +27,5 @@ public class Music {
 			clip.loop(Clip.LOOP_CONTINUOUSLY);
 		}
 	}
-
-	static void pause() {
-
-		clipTimePosition = clip.getMicrosecondPosition();
-		clip.stop();
-	}
-	
 	}
 
