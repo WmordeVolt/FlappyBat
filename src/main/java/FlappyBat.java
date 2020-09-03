@@ -142,7 +142,7 @@ private FlappyBat(){
 		
 	}
 	
-	public void windowIconified(WindowEvent e) {
+	public void windowIconified(WindowEvent e) { //pauzowanie muzyki po zminimalizowaniu okna
 		
 		Music.clip.stop();
 	}
